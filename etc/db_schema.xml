@@ -7,12 +7,6 @@
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="customer_address_entity" resource="default" engine="innodb" comment="Customer Address Entity">
-        <column xsi:type="int" name="city_id" unsigned="true" nullable="true" identity="false" comment="City Id"/>
-        <column xsi:type="varchar" name="district" nullable="true" length="255" comment="District"/>
-        <column xsi:type="int" name="district_id" unsigned="true" nullable="true" identity="false"
-                comment="District"/>
-    </table>
     <table name="directory_country_region_city" resource="default" engine="innodb" comment="Directory Country Region City">
         <column xsi:type="int" name="city_id" unsigned="true" nullable="false" identity="true"
                 comment="City ID"/>

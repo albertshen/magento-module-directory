@@ -15,7 +15,7 @@ define([
 
     return Select.extend({
         defaults: {
-            skipValidation: false,
+            skipValidation: true,
             cityScope: 'data.city',
             imports: {
                 regionOptions: '${ $.parentName }.region_id:indexedOptions',
@@ -30,50 +30,13 @@ define([
             var option;
 
             this._super();
+
             option = _.find(this.regionOptions, function (row) {
                 return row['is_default'] === true;
             });
             this.hideCity(option);
 
             return this;
-        },
-
-        /**
-         * Method called every time country selector's value gets changed.
-         * Updates all validations and requirements for certain country.
-         * @param {String} value - Selected country ID.
-         */
-        update: function (value) {
-            var isCityRequired,
-                option;
-
-            if (!value) {
-                return;
-            }
-
-            option = _.isObject(this.regionOptions) && this.regionOptions[value];
-
-            if (!option) {
-                return;
-            }
-
-            this.hideCity(option);
-
-
-            isCityRequired = !this.skipValidation && !!option['is_city_required'];
-
-            if (!isCityRequired) {
-                this.error(false);
-            }
-
-            this.required(isCityRequired);
-            this.validation['required-entry'] = isCityRequired;
-
-            registry.get(this.customName, function (input) {
-                input.required(isCityRequired);
-                input.validation['required-entry'] = isCityRequired;
-                input.validation['validate-not-number-first'] = !this.options().length;
-            }.bind(this));
         },
 
         /**

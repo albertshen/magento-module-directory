@@ -15,7 +15,7 @@ define([
 
     return Select.extend({
         defaults: {
-            skipValidation: false,
+            skipValidation: true,
             districtScope: 'data.district',
             imports: {
                 cityOptions: '${ $.parentName }.city_id:indexedOptions',
@@ -36,44 +36,6 @@ define([
             this.hideDistrict(option);
 
             return this;
-        },
-
-        /**
-         * Method called every time country selector's value gets changed.
-         * Updates all validations and requirements for certain country.
-         * @param {String} value - Selected country ID.
-         */
-        update: function (value) {
-            var isDistrictRequired,
-                option;
-
-            if (!value) {
-                return;
-            }
-
-            option = _.isObject(this.cityOptions) && this.cityOptions[value];
-
-            if (!option) {
-                return;
-            }
-
-            this.hideDistrict(option);
-
-
-            isDistrictRequired = !this.skipValidation && !!option['is_district_required'];
-
-            if (!isDistrictRequired) {
-                this.error(false);
-            }
-
-            this.required(isDistrictRequired);
-            this.validation['required-entry'] = isDistrictRequired;
-
-            registry.get(this.customName, function (input) {
-                input.required(isDistrictRequired);
-                input.validation['required-entry'] = isDistrictRequired;
-                input.validation['validate-not-number-first'] = !this.options().length;
-            }.bind(this));
         },
 
         /**
