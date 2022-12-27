@@ -34,10 +34,19 @@ define([
             option = _.find(this.regionOptions, function (row) {
                 return row['is_default'] === true;
             });
-            this.hideCity(option);
+            //this.hideCity(option);
 
             return this;
         },
+
+        /**
+         * Method called every time country selector's value gets changed.
+         * Updates all validations and requirements for certain country.
+         * @param {String} value - Selected country ID.
+         */
+        // update: function (value) {
+        //     console.log(this.customName);
+        // },
 
         /**
          * Set city to customer address form
