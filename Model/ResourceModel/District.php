@@ -129,13 +129,13 @@ class District extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Loads district by district code and city id
      *
-     * @param \Magento\Directory\Model\District $district
+     * @param \AlbertMage\Directory\Model\District $district
      * @param string $districtCode
      * @param string $cityId
      *
      * @return $this
      */
-    public function loadByCode(\Magento\Directory\Model\District $district, $districtCode, $cityId)
+    public function loadByCode(\AlbertMage\Directory\Model\District $district, $districtCode, $cityId)
     {
         return $this->_loadByCity($district, $cityId, (string)$districtCode, 'code');
     }
@@ -143,12 +143,12 @@ class District extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Load data by region id and default region name
      *
-     * @param \Magento\Directory\Model\District $district
+     * @param \AlbertMage\Directory\Model\District $district
      * @param string $districtName
      * @param string $cityId
      * @return $this
      */
-    public function loadByName(\Magento\Directory\Model\District $district, $districtName, $cityId)
+    public function loadByName(\AlbertMage\Directory\Model\District $district, $districtName, $cityId)
     {
         return $this->_loadByCity($district, $cityId, (string)$districtName, 'default_name');
     }
